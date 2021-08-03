@@ -227,6 +227,30 @@ Mỗi lần push/pull từ remote repositoy thì đều bị hỏi mật khẩu]
 [Cho dù đã push nhưng vẫn không phản ánh trên remote repository](#X3.1)
 
 [Mỗi lần push/pull từ remote repositoy thì đều bị hỏi mật khẩu](#X3.2)
+
+---
+Source: Internet
+
+Some document links:
+
+- [backlog.com](https://backlog.com/git-tutorial/vn/reference/)
+- [GitHub Docs](https://docs.github.com/en/github)
+- [Git và Github cho sysadmin](https://github.com/hocchudong/git-github-for-sysadmin)
+
+Thanks a lot
+
+---
+
+**Feedback**
+
+Bài viết trên tôi tổng hợp lại những kiến thức thu được khi tìm hiểu và sử dụng git và github cùng những nguồn tài liệu quý giá từ Internet. Giúp tôi dễ review hơn. Hi vọng cũng hữu ích cho các bạn beginers
+
+Rất vui nhận được feedback để bài viết thêm hoàn thiện hơn.
+
+Email: lnkngoc8@gmail.com
+
+Xin chân thành cảm ơn!
+
 ---
 
 <a name="ThaoTacCoBan"></a>
@@ -1652,9 +1676,8 @@ Connection to git.backlogtool.com closed.
 *Không thể clone remote repository bằng HTTPS URL
 Mỗi lần push/pull từ remote repositoy thì đều bị hỏi mật khẩu*
 
-```
-Ở phiên bản Git cũ thì cũng có trường hợp không thể thực hiện push và pull. Cho nên hãy sử dụng phiên bản 1.7.10 trở về sau. Những bạn đang sử dụng SourceTree và TortoiseGit thì xin hãy kiểm tra phiên bản mà mình đang sử dụng.
-```
+- Ở phiên bản Git cũ thì cũng có trường hợp không thể thực hiện push và pull. Cho nên hãy sử dụng phiên bản 1.7.10 trở về sau. Những bạn đang sử dụng SourceTree và TortoiseGit thì xin hãy kiểm tra phiên bản mà mình đang sử dụng.
+
 
 <a name="X3."></a>
 
