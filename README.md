@@ -133,9 +133,9 @@
 
 ---
 
-<a name="ThaoTacCoBan"></a>
+<a name="ThaoTacRemote"></a>
 
-# VI. ThaoTacRemote
+# VI. Thao tác Remote
 
 [1. Muốn nhân ra nhiều remote repository có sẵn](#VI1)
 [2. Muốn thêm remote repository](#VI2)
@@ -1217,52 +1217,178 @@ Chỉ hiển thị những commit bao hàm commit log có chứa những ký t�
 [*Đọc thêm*](https://backlog.com/git-tutorial/vn/stepup/stepup6_1.html)
 
 
+---
+
 <a name="VI1"></a>
 
-# VI. ThaoTacRemote
+# VI. Thao tác Remote
 
 ## 1. Muốn nhân ra nhiều remote repository có sẵn
+
+```
+$ git clone <url>
+```
+
+- Trường hợp nhân bản bằng lệnh clone, thì việc theo dõi remote repository sẽ được tự động thiết lập.
+
+- Tùy thuộc vào thiết lập này, khi thực hiện các lệnh push và fetch/pull về sau thì cho dù có tĩnh lược repository đi chăng nữa thì nội dung thay đổi cũng có thể phản ánh/ lấy đúng.
 
 <a name="VI2"></a>
 
 ## 2. Muốn thêm remote repository
 
+```
+$ git remote add <name> <url>
+
+```
+
+
 <a name="VI3"></a>
 
 ## 3. Muốn hiển thị danh sách remote repository
+
+```
+$ git remote
+```
+
+Khi thêm lựa chọn -v thì có thể hiển thị chi tiết của remote repository.
+
+
 
 <a name="VI4"></a>
 
 ## 4. Từ branch của remote repository muốn tạo branch của local repository
 
+```
+$ git checkout <branch>
+```
+
+- Với phiên bản gần đây của Git thì khi chỉ định branch đã tồn tại trong remote repository vào trong tham số của lệnh checkout thì có thể tạo branch trên local repository từ branch của remote repository.
+
+- Trường hợp không thể tạo được do phiên bản cũ thì hãy tạo branch bằng lệnh branch như bên dưới.
+
+```
+$ git branch <branchname> origin/<branch>
+```
+
+
+
+
 <a name="VI5"></a>
 
 ## 5. Muốn tạo branch trong remote repository / muốn phản ánh nội dung thay đổi trong branch
+
+```
+$ git push <repository> <refspec>
+
+```
+
+- Khi thêm lựa chọn -u thì có thể theo dõi đối tượng branch trong remote repository. Tùy thuộc vào việc này, khi thực hiện các lệnh push và fetch/pull về sau thì cho dù có tĩnh lược repository đi chăng nữa thì nội dung thay đổi cũng có thể phản ánh/ lấy đúng.
+
+- Trong <respository> bằng lệnh remote add thì ngoài việc thêm tên repository thì cũng có thể trực tiếp chỉ định URL. Khi tĩnh lược repository thì remote repository đang theo dõi sẽ trở thành đối tượng được chỉ định.
+
+- Trong <refspec> thì có thể chỉ định tên của branch. Khi tĩnh lược refspec, thì mặc định là branch tồn tại trong cả hai nơi local repository và remote repository sẽ trở thành đối tượng.
+
+
 
 <a name="VI6"></a>
 
 ## 6. Muốn xác nhận nội dung thay đổi trong branch của remote repository
 
+```
+$ git fetch <repository> <refspec>
+
+```
+
+- Trường hợp muốn xác nhận nội dung thay đổi ở remote repository nhưng không muốn phản ánh những nội dung đó trong local repository thì sử dụng lệnh fetch. Lệnh fetch thì branch của local repository sẽ không bị thay đổi.
+
+- Có thể tĩnh lược repository và refspec. Các thao tác của trường hợp tĩnh lược repository thì giống với khi push. Khi tĩnh lược refspec thì mặc định là tất cả branch sẽ trở thành đối tượng.
+
+
+
+
 <a name="VI7"></a>
 
 ## 7. Muốn lấy nội dung thay đổi trong branch của remote repository
+
+```
+$ git pull <repository> <refspec>
+```
+
+- Tùy thuộc vào lệnh pull mà nội dung thay đổi của remote repository sẽ được phản ánh trong branch của local repository. Có thể hiểu đơn giản là "pull = fetch + merge".
+
+- Có thể tĩnh lược repository và refspec. Các thao tác của trường hợp tĩnh lược repository thì giống với khi push. Khi tĩnh lược refspec thì branch hiện tại sẽ trở thành đối tượng.
+
+
 
 <a name="VI8"></a>
 
 ## 8. Muốn xóa branch của remote repository
 
+```
+$ git push --delete <repository> <branchname>
+```
+
+- Trong lệnh push chỉ định lựa chọn *--delete* với *<tên remote repository> <tên branch muốn xóa>* rồi thực hiện.
+
+- Từ phiên bản git 1.7 trở về trước thì lựa chọn *--delete* không thể sử dụng được, nên hãy thực hiện chỉ định như bên dưới:
+
+```
+$ git push <repository> :<branchname>
+```
+
+
 <a name="VI9"></a>
 
 ## 9. Muốn tạo tag trong remote repository
+
+```
+$ git push <repository> <tagname>
+```
+
+- Khi thêm lựa chọn -tags vào thì có thể tạo tất cả tag đã tồn tại ở local repository vào remote repository.
+
 
 <a name="VI10"></a>
 
 ## 10. Muốn xóa tag của remote repository
 
+```
+$ git push --delete <repository> <tagname>
+```
+
+- Trong lệnh push chỉ định lựa chọn *--delete* với *<tên remote repository> <tên của tag muốn xóa>* rồi thực hiện
+
+- Từ phiên bản git 1.7 trở về trước thì lựa chọn *--delete* không thể sử dụng được, nên hãy thực hiện chỉ định như bên dưới:
+
+```
+$ git push <repository> :<tagname>
+```
+
+
+
 <a name="VI11"></a>
 
 ## 11. Muốn thay đổi địa chỉ của remote repository đã đăng ký xong
 
+```
+$ git remote set-url <name> <newurl>
+
+```
+
+
+- Bằng tên đã chỉ định, thay đổi địa chỉ của remote repository đang được đăng ký vào địa chỉ của <newurl>
+
+
+
 <a name="VI12"></a>
 
 ## 12. Muốn thay đổi tên của remote repository đã đăng ký xong
+
+```
+$ git remote rename <old> <new>
+```
+
+- Thay đổi tên của remote repository đang được đăng ký chỉ định trong <old> bằng <new>.
+
+---
