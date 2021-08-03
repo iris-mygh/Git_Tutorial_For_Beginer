@@ -138,16 +138,27 @@
 # VI. Thao tác Remote
 
 [1. Muốn nhân ra nhiều remote repository có sẵn](#VI1)
+
 [2. Muốn thêm remote repository](#VI2)
+
 [3. Muốn hiển thị danh sách remote repository](#VI3)
+
 [4. Từ branch của remote repository muốn tạo branch của local repository](#VI4)
+
 [5. Muốn tạo branch trong remote repository / muốn phản ánh nội dung thay đổi trong branch](#VI5)
+
 [6. Muốn xác nhận nội dung thay đổi trong branch của remote repository](#VI6)
+
 [7. Muốn lấy nội dung thay đổi trong branch của remote repository](#VI7)
+
 [8. Muốn xóa branch của remote repository](#VI8)
+
 [9. Muốn tạo tag trong remote repository](#VI9)
+
 [10. Muốn xóa tag của remote repository](#VI10)
+
 [11. Muốn thay đổi địa chỉ của remote repository đã đăng ký xong](#VI11)
+
 [12. Muốn thay đổi tên của remote repository đã đăng ký xong](#VI12)
 
 ---
@@ -156,6 +167,21 @@
 
 # VII. Thiết lập Git
 
+[1. Muốn thiết lập tên người dùng / địa chỉ email](#VII1)
+
+[2. Muốn tô màu kết quả xuất ra](#VII2)
+
+[3. Muốn thiết lập bí danh trong lệnh](#VII3)
+
+[4. Muốn bỏ ra ngoài đối tượng quản lý những file không cần thiết](#VII4)
+
+[5. Muốn các thư mục rỗng nằm trong đối tượng quản lý](#VII5)
+
+[6. Muốn hiển thị danh sách thiết lập](#VII6)
+
+[7. Muốn thông qua proxy server kết nối http](#VII7)
+
+[8. Muốn thông qua proxy server có cần thiết chứng thực người sử dụng để kết nối http](#VII8)
 
 ---
 
@@ -163,11 +189,23 @@
 
 # VIII. Stash
 
+[1. Muốn tạm thời lưu lại công việc hiện tại](#VIII1)
+
+[2. Muốn hiển thị danh sách công việc lưu tạm](#VIII2)
+
+[3. Muốn quay lại tiếp tục công việc lưu tạm](#VIII3)
+
+[4. Muốn xóa công việc lưu tạm](#VIII4)
+
+[5. Muốn xóa tất cả công việc lưu tạm](#VIII5)
+
 ---
 
 <a name="SoSanhGit-Subversion"></a>
 
 # IX. So sánh Git-Subversion
+
+- Đây là biểu đồ so sánh lệnh của *Git* với *Subversion*: [here](#IX1)
 
 ---
 
@@ -175,6 +213,20 @@
 
 # X. Xử lý sự cố
 
+1. SSH
+
+[Lỗi "Permission denied (publickey)" khi dự định kết nối vào remote repository bằng SSH](#X1)
+
+2. HTTPS
+
+[Không thể clone remote repository bằng HTTPS URL
+Mỗi lần push/pull từ remote repositoy thì đều bị hỏi mật khẩu](#X2)
+
+3. SSH/HTTPS
+
+[Cho dù đã push nhưng vẫn không phản ánh trên remote repository](#X3.1)
+
+[Mỗi lần push/pull từ remote repositoy thì đều bị hỏi mật khẩu](#X3.2)
 ---
 
 <a name="ThaoTacCoBan"></a>
@@ -1377,7 +1429,7 @@ $ git remote set-url <name> <newurl>
 ```
 
 
-- Bằng tên đã chỉ định, thay đổi địa chỉ của remote repository đang được đăng ký vào địa chỉ của <newurl>
+- Bằng tên đã chỉ định, thay đổi địa chỉ của remote repository đang được đăng ký vào địa chỉ của *[newurl]*
 
 
 
@@ -1389,6 +1441,287 @@ $ git remote set-url <name> <newurl>
 $ git remote rename <old> <new>
 ```
 
-- Thay đổi tên của remote repository đang được đăng ký chỉ định trong <old> bằng <new>.
+- Thay đổi tên của remote repository đang được đăng ký chỉ định trong *[old]* bằng *[new]*.
 
 ---
+
+
+<a name="VII1"></a>
+
+# VII. Thiết lập Git
+
+## 1. Muốn thiết lập tên người dùng / địa chỉ email
+
+```
+$ git config --global user.name <username>
+$ git config --global user.email <mailaddress>
+```
+
+- Khi không thêm lựa chọn *--global* thì chỉ những repository có liên quan mới trở nên hữu hiệu với thiết lập.
+
+<a name="VII2"></a>
+
+## 2. Muốn tô màu kết quả xuất ra
+
+```
+$ git config --global color.ui auto
+```
+
+<a name="VII3"></a>
+
+## 3. Muốn thiết lập bí danh trong lệnh
+
+```
+$ git config --global alias.<aliasname> <commandname>
+```
+
+<a name="VII4"></a>
+
+## 4. Muốn bỏ ra ngoài đối tượng quản lý những file không cần thiết
+
+```
+$ echo <filename> >> .gitignore
+```
+
+- Tên file có *.gitignore* trong đó là ngoài đối tượng quản lý của Git. Và bản thân của *.gitignore* cũng cần thiết phải commit sẵn.
+
+
+<a name="VII5"></a>
+
+## 5. Muốn các thư mục rỗng nằm trong đối tượng quản lý
+
+```
+$ cd <dirname>
+$ touch .gitkeep
+```
+
+- Ở Git thì thư mục rỗng sẽ không là đối tượng quản lý. Chính vì vậy, cần thiết phải đặt file tùy ý vào trong thư mục. 
+
+Tên file thì bất cứ là gì cũng không sao, nhưng theo thói quen thì rất nhiều trường hợp sử dụng tên file là *.gitkeep*.
+
+
+
+<a name="VII6"></a>
+
+## 6. Muốn hiển thị danh sách thiết lập
+
+```
+$ git config --global --list
+
+```
+
+<a name="VII7"></a>
+
+## 7. Muốn thông qua proxy server kết nối http
+
+- Trong mục http của file .gitconfig thì thêm thiết lập như bên dưới.
+
+```
+[http]
+proxy = <address of the proxy server>:<port of the proxy server>
+```
+
+Bằng lệnh config cũng có thể thiết lập như bên dưới:
+
+```
+$ git config --global http.proxy <address of the proxy server>:<port of the proxy server>
+```
+
+<a name="VII8"></a>
+
+## 8. Muốn thông qua proxy server có cần thiết chứng thực người sử dụng để kết nối http
+
+Trong mục http của file .gitconfig thì thêm thiết lập như bên dưới.
+
+```
+[http]
+proxy = http://<username>:<password>@<address of the proxy server>:<port of the proxy server>
+```
+
+Bằng lệnh config cũng có thể thiết lập như bên dưới.
+
+```
+$ git config --global http.proxy http://<username>:<password>@<address of the proxy server>:<port of the proxy server>
+```
+
+---
+
+<a name="VIII1"></a>
+
+# VIII. Stash
+
+## 1. Muốn tạm thời lưu lại công việc hiện tại
+
+```
+$ git stash save
+```
+
+Có thể tĩnh lược save. Và phía sau của save có thể thực hiện chỉ định nội dung giải thích hiển thị.
+
+<a name="VIII2"></a>
+
+## 2. Muốn hiển thị danh sách công việc lưu tạm
+
+```
+$ git stash list
+```
+
+<a name="VIII3"></a>
+
+## 3. Muốn quay lại tiếp tục công việc lưu tạm
+
+```
+$ git stash pop
+```
+
+Khi không chỉ định tham số sẽ phục hồi lại công việc mới nhất trong số công việc lưu tạm.
+
+Bằng việc chỉ định tham số theo kiểu stash@{1} thì có thể phục hồi lại công việc mong muốn.
+
+<a name="VIII4"></a>
+
+## 4. Muốn xóa công việc lưu tạm
+
+```
+$ git stash drop
+```
+
+Khi không chỉ định tham số sẽ xóa công việc mới nhất trong số công việc lưu tạm.
+
+Bằng việc chỉ định tham số theo kiểu stash@{1} thì có thể xóa công việc mong muốn.
+
+<a name="VIII5"></a>
+
+## 5. Muốn xóa tất cả công việc lưu tạm
+
+```
+$ git stash clear
+```
+
+---
+
+<a name="IX1"></a>
+
+# IX. So sánh Git-Subversion
+
+- Đây là biểu đồ so sánh lệnh của *Git* với *Subversion*
+
+<img src="https://github.com/lnkngoc/Git_Tutorial_For_Beginer/blob/main/images/git_subversion_1.png">
+
+*Note*
+
+<img src="https://github.com/lnkngoc/Git_Tutorial_For_Beginer/blob/main/images/git_subversion_2.png">
+
+---
+
+
+<a name="X1"></a>
+
+# X. Xử lý sự cố
+
+### 1. SSH
+
+*Lỗi "Permission denied (publickey)" khi dự định kết nối vào remote repository bằng SSH*
+
+- Trước hết, phải đảm bảo những vấn đề sau:
+
+  - URL có đúng không?
+  
+  - Ở máy local khóa bí mật (serect key) có được thiết lập đúng hay không?
+
+  - Ở remote khóa công khai (public key) có được thiết lập đúng hay không?
+
+- Đối với repository trên Backlog để xác nhận khóa bí mật (serect key) / khóa công khai (public key) có được thiết lập đúng hay không thì thực hiện lệnh như bên dưới:
+
+```
+$ ssh <space>@<space>.git.backlogtool.com
+```
+- Ở **space** thì thay thế bằng space sở hữu thích hợp (Ví dụ. nếu space đang sử dụng là 'demo.backlogtool.com', thì thay bằng 'demo@demo.git.backlogtool.com')
+
+- Trường hợp được thiết lập đúng thì log như bên dưới sẽ được xuất ra. Trường hợp mà thông báo lỗi được hiển thị thì hãy xem lại và sửa lại thiết lập như bên trên.
+
+```
+Hi yourname! You've successfully authenticated, but Backlog does not provide shell access.
+Connection to git.backlogtool.com closed.
+```
+
+<a name="X2"></a>
+
+### 2. HTTPS
+
+*Không thể clone remote repository bằng HTTPS URL
+Mỗi lần push/pull từ remote repositoy thì đều bị hỏi mật khẩu*
+
+```
+Ở phiên bản Git cũ thì cũng có trường hợp không thể thực hiện push và pull. Cho nên hãy sử dụng phiên bản 1.7.10 trở về sau. Những bạn đang sử dụng SourceTree và TortoiseGit thì xin hãy kiểm tra phiên bản mà mình đang sử dụng.
+```
+
+<a name="X3."></a>
+
+## 3. SSH/HTTPS
+
+### 3.1 *Cho dù đã push nhưng vẫn không phản ánh trên remote repository*
+
+- Tạo mới repository, rồi clone, rồi tạo local repository, và ở trên local repository đó rồi thực hiện push thì cũng có trường hợp log như bên dưới được xuất ra.
+
+```
+$ git push
+No refs in common and none specified; doing nothing.
+Perhaps you should specify a branch such as 'master'.
+Everything up-to-date
+```
+
+- Cái này là do trên remote branch thì master branch chưa được tạo ra. Trường hợp tham số khi push được tĩnh lược thì mặc định là branch tồn tại ở cả 2 remote repository với local repository sẽ trở thành đối tượng. 
+
+- Chính vì vậy, trường hợp thực hiện push branch không tồn tại trong remote repository thì cần thiết phải chỉ định rõ repository và branch.
+
+```
+$ git push -u origin master
+```
+
+- Khi thực hiện push 1 lần thì master branch sẽ được tạo ra, do đó những lần push sau thì cũng có thể tĩnh lược việc chỉ định repository và branch.
+
+
+<a name="X3.2"></a>
+
+### 3.2 *Mỗi lần push/pull từ remote repositoy thì đều bị hỏi mật khẩu*
+
+- Ở phiên bản Git 1.7.10 trở về sau thì tùy thuộc vào chứng thực API được trang bị sẵn trong Git và Helper chứng thực sử dụng cái đó thì có thể tránh được việc phải nhập lại mật khẩu.
+
+- **Windows**
+Sử dụng công cụ có tên là [git-credential-winstoreu](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) thì từ lần thứ 2 trở đi việc nhập mật mã sẽ không cần thiết nữa.
+
+- **Mac**
+Ở phần nhập môn và phần phát triển trong GuiClient của Mac đã có đề cập, chức năng liên kết SourceTree với Mac Keychain đã được chuẩn bị như là chức năng chuẩn. Sử dụng chức năng này thì mỗi lần pull và push thì không cần phải thực hiện việc nhập mật khẩu.
+
+- **Console**
+Ở Mac, thì có thể sử dụng Git's credentials API để liên kết username/password với thao tác Git. Nếu như sử dụng Homebrew thì Git credential API sẽ tự động được cài đặt. Ngoài những trường hợp đó ra thì cần thiết phải cài đặt bằng tay.
+
+Có thể kiểm tra credential API đã được cài đặt bằng lệnh bên dưới.
+
+```
+$ git credential-osxkeychain
+Usage: git credential-osxkeychain <get|store|erase>
+```
+
+Nếu như credential API chưa được cài đặt thì nội dung xuất ra như bên dưới sẽ được hiển thị.
+
+```
+$ git credential-osxkeychain
+git: 'credential-osxkeychain' is not a git command. See 'git --help'.
+```
+
+Trong trường hợp đó thì có thể tải nó về và di chuyển files đến /usr/local/bin
+
+```
+curl -s -O http://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
+chmod u+x git-credential-osxkeychain
+mv git-credential-osxkeychain /usr/local/bin
+```
+
+Sau khi đã hoàn thành cài đặt thì chạy lệnh bên dưới để kích hoạt credential API.
+
+```
+git config --global credential.helper osxkeychain
+```
+
