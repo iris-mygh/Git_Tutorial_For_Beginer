@@ -674,6 +674,7 @@ Branch này sẽ phân nhánh từ branch develop khi phát triển chức năng
 ```
 
 ---
+<a name="II2"></a>
 
 ## 2. Muốn hiển thị danh sách của branch
 
@@ -682,6 +683,10 @@ $ git branch
 ```
 - Khi thêm lựa chọn -r sẽ liệt kê những branch điều khiển từ xa. 
 - Khi thêm lựa chọn -a thì có thể hiển thị danh sách cả remote và local branch.
+
+---
+
+<a name="II3"></a>
 
 ## 3. Muốn tạo branch
 ```
@@ -693,11 +698,13 @@ $ git branch
   issue1
 * master
 ```
+<a name="II4"></a>
 
 ## 4. Muốn thay đổi tên branch
 ```
 $ git branch -m <oldbranch> <newbranch>
 ```
+<a name="II5"></a>
 
 ## 5. Muốn xóa branch
 ```
@@ -705,6 +712,7 @@ $ git branch -d <branchname>
 ```
 - Trường hợp có commit chưa được merge vào HEAD thì không thể xóa branch. Để xóa branch có commit chưa được merge cách cưỡng chế thì thêm lựa chọn -D vào rồi thực thi.
 
+<a name="II6"></a>
 
 ## 6. Chuyển đổi branch
 ```
@@ -718,6 +726,7 @@ $ git checkout <branch>
 
 Checkout branch sẽ thực hiện bằng lệnh checkout.)
 
+<a name="II7"></a>
 
 ## 7. Muốn Merge branch
 ```
